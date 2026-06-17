@@ -1,4 +1,28 @@
-.container {
-  padding: 20px;
+.team {
+  padding: 60px 0;
+  width: 100%;
+}
+
+.header {
   text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #64748b;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
 }

@@ -1,44 +1,116 @@
-.headerContent {
-  text-align: center;
-  padding: 10px 0;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
 }
 
-.title {
+.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 5px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.logoIcon {
+  font-size: 2rem;
   color: #2563eb;
-  margin-bottom: 15px;
-  font-size: 1.8rem;
+}
+
+.logoText {
+  color: #1e293b;
+}
+
+.pro {
+  color: #2563eb;
 }
 
 .nav {
   display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
 }
 
-.button {
-  padding: 8px 16px;
-  border: none;
-  background: transparent;
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 5px;
+}
+
+.navLink {
+  text-decoration: none;
   color: #64748b;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  padding: 10px 15px;
+  border-radius: 8px;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-.button:hover {
+.navLink:hover {
   color: #2563eb;
-  background-color: #f1f5f9;
+  background-color: rgba(37, 99, 235, 0.05);
 }
 
 .active {
-  color: white;
-  background-color: #2563eb;
+  color: #2563eb;
+  font-weight: 600;
 }
 
-.active:hover {
+.active::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  right: 15px;
+  height: 2px;
+  background-color: #2563eb;
+  border-radius: 2px;
+}
+
+.cta {
+  background-color: #2563eb;
   color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
   background-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* In a real app we'd add a mobile menu */
+  }
 }
