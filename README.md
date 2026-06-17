@@ -6,7 +6,6 @@
 2. [Technologies Used](#technologies-used)
 3. [Installation](#installation)
 4. [Database Architecture](#database-architecture)
-5. [API Endpoints](#api-endpoints)
 
 ## Overview
 
@@ -41,8 +40,6 @@ npm start
 
 ## Database Architecture
 
-The application uses MySQL as its database with the following structure:
-
 ```mermaid
 graph TD
     A[Database: physics_calculator] --> B[Table: results]
@@ -68,111 +65,4 @@ graph TD
     
     Q[TIMESTAMP] --> G
     R[CURRENT_TIMESTAMP] --> G
-```
-
-**Database Details**:
-- Database Name: `physics_calculator`
-- Table: `results`
-
-**Columns**:
-- id: INT, AUTO_INCREMENT PRIMARY KEY
-- topic: VARCHAR(50), NOT NULL
-- inputs: JSON, NOT NULL
-- result: TEXT, NOT NULL
-- created_at: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
-
-**Connection Pool Configuration**:
-- Maximum connections: 10
-- Queue limit: Unlimited
-- Host: localhost (configurable via environment variables)
-
-## Database Architecture
-
-The application uses MySQL as its database with the following structure:
-
-```mermaid
-graph LR
-    A[Database: physics_calculator] --> B[Table: results]
-    
-    C[Column: id] --> B
-    D[Column: topic] --> B
-    E[Column: inputs] --> B
-    F[Column: result] --> B
-    G[Column: created_at] --> B
-    
-    H[Type: INT] --> C
-    I[Constraint: AUTO_INCREMENT] --> C
-    J[Constraint: PRIMARY KEY] --> C
-    
-    K[Type: VARCHAR(50)] --> D
-    L[Constraint: NOT NULL] --> D
-    
-    M[Type: JSON] --> E
-    N[Constraint: NOT NULL] --> E
-    
-    O[Type: TEXT] --> F
-    P[Constraint: NOT NULL] --> F
-    
-    Q[Type: TIMESTAMP] --> G
-    R[Default: CURRENT_TIMESTAMP] --> G
-```
-
-**Database Details**:
-| Property | Value |
-|----------|-------|
-| Database Name | `physics_calculator` |
-| Table | `results` |
-
-**Columns**:
-| Column | Type | Constraints |
-|--------|------|-------------|
-| id | INT | AUTO_INCREMENT PRIMARY KEY |
-| topic | VARCHAR(50) | NOT NULL |
-| inputs | JSON | NOT NULL |
-| result | TEXT | NOT NULL |
-| created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP |
-
-**Connection Pool Configuration**:
-- Maximum connections: 10
-- Queue limit: Unlimited
-- Host: localhost (configurable via environment variables)
-
-## API Endpoints
-
-### POST /api/results
-
-Saves a new calculation result to the database.
-
-**Request Body**:
-```json
-{
-  "topic": "string",
-  "inputs": "object",
-  "result": "string"
-}
-```
-
-**Response**:
-```json
-{
-  "id": 1,
-  "message": "Result saved successfully"
-}
-```
-
-### GET /api/results
-
-Retrieves all calculation results, ordered by creation date (newest first).
-
-**Response**:
-```json
-[
-  {
-    "id": 1,
-    "topic": "string",
-    "inputs": "object",
-    "result": "string",
-    "created_at": "2024-01-01T00:00:00.000Z"
-  }
-]
 ```
