@@ -42,27 +42,27 @@ npm start
 
 ```mermaid
 graph TD
-    A[Database: physics_calculator] --> B[Table: results]
-    
-    C[id] --> B
-    D[topic] --> B
-    E[inputs] --> B
-    F[result] --> B
-    G[created_at] --> B
-    
-    H[INT] --> C
-    I[AUTO_INCREMENT] --> C
-    J[PRIMARY KEY] --> C
-    
-    K[VARCHAR(50)] --> D
-    L[NOT NULL] --> D
-    
-    M[JSON] --> E
-    N[NOT NULL] --> E
-    
-    O[TEXT] --> F
-    P[NOT NULL] --> F
-    
-    Q[TIMESTAMP] --> G
-    R[CURRENT_TIMESTAMP] --> G
+    DB["Database physics_calculator"] --> T["Table results"]
+
+    T --> ID["id"]
+    T --> TOPIC["topic"]
+    T --> INPUTS["inputs"]
+    T --> RESULT["result"]
+    T --> CREATED["created_at"]
+
+    ID --> ID_TYPE["INT"]
+    ID --> ID_AI["AUTO_INCREMENT"]
+    ID --> ID_PK["PRIMARY KEY"]
+
+    TOPIC --> TOPIC_TYPE["VARCHAR(50)"]
+    TOPIC --> TOPIC_NN["NOT NULL"]
+
+    INPUTS --> INPUTS_TYPE["JSON"]
+    INPUTS --> INPUTS_NN["NOT NULL"]
+
+    RESULT --> RESULT_TYPE["TEXT"]
+    RESULT --> RESULT_NN["NOT NULL"]
+
+    CREATED --> CREATED_TYPE["TIMESTAMP"]
+    CREATED --> CREATED_DEFAULT["DEFAULT CURRENT_TIMESTAMP"]
 ```
