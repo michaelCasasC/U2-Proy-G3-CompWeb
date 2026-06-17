@@ -13,15 +13,13 @@ The Physics Calculator Server is a RESTful API application designed to store and
 
 ## Technologies Used
 
-| Technology | Description |
-|------------|-------------|
-| Node.js | JavaScript runtime environment |
-| Express.js | Web framework for building APIs |
-| MySQL | Relational database management system |
-| mysql2 | MySQL driver for Node.js |
-| CORS | Middleware for handling Cross-Origin Resource Sharing |
-| dotenv | Environment variable management |
-| Docker | Containerization platform |
+1. Node.js: JavaScript runtime environment
+2. Express.js: Web framework for building APIs
+3. MySQL: Relational database management system
+4. mysql2: MySQL driver for Node.js
+5. CORS: Middleware for handling Cross-Origin Resource Sharing
+6. dotenv: Environment variable management
+7. Docker: Containerization platform
 
 ## Installation
 
