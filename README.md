@@ -2,13 +2,11 @@
 
 ## Table of Contents
 
-| # | Section |
-|---|---------|
-| 1 | [Overview](#overview) |
-| 2 | [Technologies Used](#technologies-used) |
-| 3 | [Installation](#installation) |
-| 4 | [Database Architecture](#database-architecture) |
-| 5 | [API Endpoints](#api-endpoints) |
+1. [Overview](#overview)
+2. [Technologies Used](#technologies-used)
+3. [Installation](#installation)
+4. [Database Architecture](#database-architecture)
+5. [API Endpoints](#api-endpoints)
 
 ## Overview
 
@@ -16,51 +14,77 @@ The Physics Calculator Server is a RESTful API application designed to store and
 
 ## Technologies Used
 
-- **Node.js**: JavaScript runtime environment
-- **Express.js**: Web framework for building APIs
-- **MySQL**: Relational database management system
-- **mysql2**: MySQL driver for Node.js
-- **CORS**: Middleware for handling Cross-Origin Resource Sharing
-- **dotenv**: Environment variable management
-- **Docker**: Containerization platform
+| Technology | Description |
+|------------|-------------|
+| Node.js | JavaScript runtime environment |
+| Express.js | Web framework for building APIs |
+| MySQL | Relational database management system |
+| mysql2 | MySQL driver for Node.js |
+| CORS | Middleware for handling Cross-Origin Resource Sharing |
+| dotenv | Environment variable management |
+| Docker | Containerization platform |
 
 ## Installation
 
-### Prerequisites
+```bash
+# Clone repository
+git clone <repository-url>
+cd physics-calculator-server
 
-- Node.js (v14 or higher)
-- MySQL database server
+# Install dependencies
+cd server
+npm install
 
-### Steps
+# Start server
+npm start
+```
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd physics-calculator-server
-   ```
+## Database Architecture
 
-2. Navigate to the server directory:
-   ```bash
-   cd server
-   ```
+The application uses MySQL as its database with the following structure:
 
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+```mermaid
+graph TD
+    A[Database: physics_calculator] --> B[Table: results]
+    
+    C[id] --> B
+    D[topic] --> B
+    E[inputs] --> B
+    F[result] --> B
+    G[created_at] --> B
+    
+    H[INT] --> C
+    I[AUTO_INCREMENT] --> C
+    J[PRIMARY KEY] --> C
+    
+    K[VARCHAR(50)] --> D
+    L[NOT NULL] --> D
+    
+    M[JSON] --> E
+    N[NOT NULL] --> E
+    
+    O[TEXT] --> F
+    P[NOT NULL] --> F
+    
+    Q[TIMESTAMP] --> G
+    R[CURRENT_TIMESTAMP] --> G
+```
 
-4. Create a `.env` file (if not already present):
-   ```bash
-   DB_HOST=127.0.0.1
-   DB_USER=physics_user
-   DB_PASSWORD=physics_password
-   DB_DATABASE=physics_calculator
-   ```
+**Database Details**:
+- Database Name: `physics_calculator`
+- Table: `results`
 
-5. Start the server:
-   ```bash
-   npm start
-   ```
+**Columns**:
+- id: INT, AUTO_INCREMENT PRIMARY KEY
+- topic: VARCHAR(50), NOT NULL
+- inputs: JSON, NOT NULL
+- result: TEXT, NOT NULL
+- created_at: TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+
+**Connection Pool Configuration**:
+- Maximum connections: 10
+- Queue limit: Unlimited
+- Host: localhost (configurable via environment variables)
 
 ## Database Architecture
 
