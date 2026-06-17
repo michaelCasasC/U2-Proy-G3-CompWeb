@@ -1,0 +1,35 @@
+.headerContent {
+  text-align: center;
+}
+
+.title {
+  color: #2563eb;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: 1px solid #2563eb;
+  background: transparent;
+  color: #2563eb;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.active {
+  background-color: #2563eb;
+  color: white;
+}
