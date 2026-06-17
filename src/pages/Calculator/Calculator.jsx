@@ -1,44 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { MRU, MRUA, FreeFall } from '../../components';
 import styles from './Calculator.module.css';
 
 const Calculator = () => {
-  const [currentTopic, setCurrentTopic] = useState("MRU");
-
-  const renderTopic = () => {
-    switch (currentTopic) {
-      case "MRU":
-        return <MRU />;
-      case "MRUA":
-        return <MRUA />;
-      case "FREE_FALL":
-        return <FreeFall />;
-      default:
-        return <MRU />;
-    }
-  };
+  const location = useLocation();
 
   const topics = [
-    { id: 'MRU', label: 'MRU' },
-    { id: 'MRUA', label: 'MRUA' },
-    { id: 'FREE_FALL', label: 'Caída Libre' }
+    { path: 'mru', label: 'MRU' },
+    { path: 'mrua', label: 'MRUA' },
+    { path: 'free-fall', label: 'Caída Libre' }
   ];
 
   return (
     <div className={styles.container}>
       <nav className={styles.subnav}>
         {topics.map((topic) => (
-          <button
-            key={topic.id}
-            className={`${styles.button} ${currentTopic === topic.id ? styles.active : ''}`}
-            onClick={() => setCurrentTopic(topic.id)}
+          <Link
+            key={topic.path}
+            to={topic.path}
+            className={`${styles.button} ${location.pathname.includes(topic.path) ? styles.active : ''}`}
           >
             {topic.label}
-          </button>
+          </Link>
         ))}
       </nav>
       <div className={styles.content}>
-        {renderTopic()}
+        <Routes>
+          <Route index element={<Navigate to="mru" replace />} />
+          <Route path="mru" element={<MRU />} />
+          <Route path="mrua" element={<MRUA />} />
+          <Route path="free-fall" element={<FreeFall />} />
+        </Routes>
       </div>
     </div>
   );

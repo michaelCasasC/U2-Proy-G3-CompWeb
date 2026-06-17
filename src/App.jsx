@@ -1,30 +1,17 @@
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components";
 import { Home, Team, Contact, News, Calculator } from "./pages";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("HOME");
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case "HOME":
-        return <Home />;
-      case "TEAM":
-        return <Team />;
-      case "CONTACT":
-        return <Contact />;
-      case "NEWS":
-        return <News />;
-      case "CALCULATOR":
-        return <Calculator />;
-      default:
-        return <Home />;
-    }
-  };
-
   return (
-    <Layout headerProps={{ currentPage, setCurrentPage }}>
-      {renderPage()}
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/calculator/*" element={<Calculator />} />
+      </Routes>
     </Layout>
   );
 }

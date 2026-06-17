@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InputField from '../InputField';
+import saveResult from '../../services/api';
 import styles from './MRUA.module.css';
 
 const MRUA = () => {
@@ -10,17 +11,22 @@ const MRUA = () => {
     setValues({ ...values, [name]: value });
   };
 
-  const calculate = () => {
+  const calculate = async () => {
     const { vi, vf, a, t, d } = values;
     const nVi = parseFloat(vi);
     const nA = parseFloat(a);
     const nT = parseFloat(t);
+    let calculatedResult = '';
 
     if (!isNaN(nVi) && !isNaN(nA) && !isNaN(nT)) {
-      setResult(`Velocidad Final (vf) = ${nVi + nA * nT} m/s | Distancia (d) = ${nVi * nT + 0.5 * nA * Math.pow(nT, 2)} m`);
+      calculatedResult = `Velocidad Final (vf) = ${nVi + nA * nT} m/s | Distancia (d) = ${nVi * nT + 0.5 * nA * Math.pow(nT, 2)} m`;
     } else {
       setResult('Ingresa vi, a y t para cálculos básicos.');
+      return;
     }
+
+    setResult(calculatedResult);
+    await saveResult('MRUA', values, calculatedResult);
   };
 
   return (

@@ -1,0 +1,41 @@
+services:
+  app:
+    build: .
+    container_name: physics_app
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    environment:
+      - VITE_API_URL=http://localhost:3001
+
+  server:
+    build: ./server
+    container_name: physics_server
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=physics_user
+      - DB_PASSWORD=physics_password
+      - DB_DATABASE=physics_calculator
+      - PORT=3001
+
+  db:
+    image: mysql:8.0
+    container_name: physics_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: physics_calculator
+      MYSQL_USER: physics_user
+      MYSQL_PASSWORD: physics_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

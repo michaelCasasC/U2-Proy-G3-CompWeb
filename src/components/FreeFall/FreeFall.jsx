@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InputField from '../InputField';
+import saveResult from '../../services/api';
 import styles from './FreeFall.module.css';
 
 const FreeFall = () => {
@@ -11,20 +12,25 @@ const FreeFall = () => {
     setValues({ ...values, [name]: value });
   };
 
-  const calculate = () => {
+  const calculate = async () => {
     const nT = parseFloat(values.t);
     const nH = parseFloat(values.h);
+    let calculatedResult = '';
 
     if (!isNaN(nT)) {
       const h = 0.5 * g * Math.pow(nT, 2);
       const vf = g * nT;
-      setResult(`Altura (h) = ${h.toFixed(2)} m | Vel. Final = ${vf.toFixed(2)} m/s`);
+      calculatedResult = `Altura (h) = ${h.toFixed(2)} m | Vel. Final = ${vf.toFixed(2)} m/s`;
     } else if (!isNaN(nH)) {
       const t = Math.sqrt((2 * nH) / g);
-      setResult(`Tiempo (t) = ${t.toFixed(2)} s`);
+      calculatedResult = `Tiempo (t) = ${t.toFixed(2)} s`;
     } else {
       setResult('Ingresa tiempo o altura.');
+      return;
     }
+
+    setResult(calculatedResult);
+    await saveResult('FREE_FALL', values, calculatedResult);
   };
 
   return (

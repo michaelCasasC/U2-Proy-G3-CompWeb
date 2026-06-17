@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
-const Header = ({ currentPage, setCurrentPage }) => {
+const Header = () => {
+  const location = useLocation();
+  
   const menuItems = [
-    { id: 'HOME', label: 'Inicio' },
-    { id: 'TEAM', label: 'Equipo de trabajo' },
-    { id: 'CONTACT', label: 'Contactos' },
-    { id: 'NEWS', label: 'Noticias' },
-    { id: 'CALCULATOR', label: 'Calculadora de Física' }
+    { path: '/', label: 'Inicio' },
+    { path: '/team', label: 'Equipo de trabajo' },
+    { path: '/contact', label: 'Contactos' },
+    { path: '/news', label: 'Noticias' },
+    { path: '/calculator', label: 'Calculadora de Física' }
   ];
 
   return (
@@ -15,13 +18,13 @@ const Header = ({ currentPage, setCurrentPage }) => {
       <h1 className={styles.title}>Física Pro</h1>
       <nav className={styles.nav}>
         {menuItems.map((item) => (
-          <button
-            key={item.id}
-            className={`${styles.button} ${currentPage === item.id ? styles.active : ''}`}
-            onClick={() => setCurrentPage(item.id)}
+          <Link
+            key={item.path}
+            to={item.path}
+            className={`${styles.button} ${location.pathname === item.path ? styles.active : ''}`}
           >
             {item.label}
-          </button>
+          </Link>
         ))}
       </nav>
     </div>

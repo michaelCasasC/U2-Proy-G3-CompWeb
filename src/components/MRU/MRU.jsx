@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InputField from '../InputField';
+import saveResult from '../../services/api';
 import styles from './MRU.module.css';
 
 const MRU = () => {
@@ -10,21 +11,26 @@ const MRU = () => {
     setValues({ ...values, [name]: value });
   };
 
-  const calculate = () => {
+  const calculate = async () => {
     const { v, t, d } = values;
     const numV = parseFloat(v);
     const numT = parseFloat(t);
     const numD = parseFloat(d);
+    let calculatedResult = '';
 
     if (!isNaN(numV) && !isNaN(numT)) {
-      setResult(`Distancia (d) = ${numV * numT} m`);
+      calculatedResult = `Distancia (d) = ${numV * numT} m`;
     } else if (!isNaN(numD) && !isNaN(numT) && numT !== 0) {
-      setResult(`Velocidad (v) = ${numD / numT} m/s`);
+      calculatedResult = `Velocidad (v) = ${numD / numT} m/s`;
     } else if (!isNaN(numD) && !isNaN(numV) && numV !== 0) {
-      setResult(`Tiempo (t) = ${numD / numV} s`);
+      calculatedResult = `Tiempo (t) = ${numD / numV} s`;
     } else {
       setResult('Por favor, ingresa al menos dos valores.');
+      return;
     }
+
+    setResult(calculatedResult);
+    await saveResult('MRU', values, calculatedResult);
   };
 
   return (
