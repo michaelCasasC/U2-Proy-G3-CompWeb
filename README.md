@@ -1,16 +1,119 @@
-# React + Vite
+# Physics Calculator Server
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
 
-Currently, two official plugins are available:
+1. [Overview](#overview)
+2. [Technologies Used](#technologies-used)
+3. [Installation](#installation)
+4. [Database Architecture](#database-architecture)
+5. [API Endpoints](#api-endpoints)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Overview
 
-## React Compiler
+The Physics Calculator Server is a RESTful API application designed to store and retrieve calculation results for various physics-related topics. It provides endpoints for saving and fetching calculation results with timestamps.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Used
 
-## Expanding the ESLint configuration
+- **Node.js**: JavaScript runtime environment
+- **Express.js**: Web framework for building APIs
+- **MySQL**: Relational database management system
+- **mysql2**: MySQL driver for Node.js
+- **CORS**: Middleware for handling Cross-Origin Resource Sharing
+- **dotenv**: Environment variable management
+- **Docker**: Containerization platform
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- MySQL database server
+
+### Steps
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd physics-calculator-server
+   ```
+
+2. Navigate to the server directory:
+   ```bash
+   cd server
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Create a `.env` file (if not already present):
+   ```bash
+   DB_HOST=127.0.0.1
+   DB_USER=physics_user
+   DB_PASSWORD=physics_password
+   DB_DATABASE=physics_calculator
+   ```
+
+5. Start the server:
+   ```bash
+   npm start
+   ```
+
+## Database Architecture
+
+The application uses MySQL as its database with the following structure:
+
+- **Database Name**: `physics_calculator`
+- **Table**: `results`
+- **Columns**:
+  - `id`: INT, auto-increment primary key
+  - `topic`: VARCHAR(50), physics topic name
+  - `inputs`: JSON, calculation inputs
+  - `result`: TEXT, calculation result
+  - `created_at`: TIMESTAMP, creation timestamp
+
+The database connection pool is configured with:
+- Maximum connections: 10
+- Queue limit: Unlimited
+- Host: localhost (configurable via environment variables)
+
+## API Endpoints
+
+### POST /api/results
+
+Saves a new calculation result to the database.
+
+**Request Body**:
+```json
+{
+  "topic": "string",
+  "inputs": "object",
+  "result": "string"
+}
+```
+
+**Response**:
+```json
+{
+  "id": 1,
+  "message": "Result saved successfully"
+}
+```
+
+### GET /api/results
+
+Retrieves all calculation results, ordered by creation date (newest first).
+
+**Response**:
+```json
+[
+  {
+    "id": 1,
+    "topic": "string",
+    "inputs": "object",
+    "result": "string",
+    "created_at": "2024-01-01T00:00:00.000Z"
+  }
+]
+```
