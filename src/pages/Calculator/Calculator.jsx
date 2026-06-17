@@ -7,9 +7,9 @@ const Calculator = () => {
   const location = useLocation();
 
   const topics = [
-    { path: 'mru', label: 'MRU' },
-    { path: 'mrua', label: 'MRUA' },
-    { path: 'free-fall', label: 'Caída Libre' }
+    { path: '/calculator/mru', label: 'MRU' },
+    { path: '/calculator/mrua', label: 'MRUA' },
+    { path: '/calculator/free-fall', label: 'Caída Libre' }
   ];
 
   return (
