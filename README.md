@@ -2,11 +2,13 @@
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Technologies Used](#technologies-used)
-3. [Installation](#installation)
-4. [Database Architecture](#database-architecture)
-5. [API Endpoints](#api-endpoints)
+| # | Section |
+|---|---------|
+| 1 | [Overview](#overview) |
+| 2 | [Technologies Used](#technologies-used) |
+| 3 | [Installation](#installation) |
+| 4 | [Database Architecture](#database-architecture) |
+| 5 | [API Endpoints](#api-endpoints) |
 
 ## Overview
 
@@ -65,41 +67,46 @@ The Physics Calculator Server is a RESTful API application designed to store and
 The application uses MySQL as its database with the following structure:
 
 ```mermaid
-graph TD
-    A[physics_calculator] --> B[results]
+graph LR
+    A[Database: physics_calculator] --> B[Table: results]
     
-    B --> C[id]
-    B --> D[topic]
-    B --> E[inputs]
-    B --> F[result]
-    B --> G[created_at]
+    C[Column: id] --> B
+    D[Column: topic] --> B
+    E[Column: inputs] --> B
+    F[Column: result] --> B
+    G[Column: created_at] --> B
     
-    C --> H[INT]
-    C --> I[AUTO_INCREMENT]
-    C --> J[PRIMARY KEY]
+    H[Type: INT] --> C
+    I[Constraint: AUTO_INCREMENT] --> C
+    J[Constraint: PRIMARY KEY] --> C
     
-    D --> K[VARCHAR(50)]
-    D --> L[NOT NULL]
+    K[Type: VARCHAR(50)] --> D
+    L[Constraint: NOT NULL] --> D
     
-    E --> M[JSON]
-    E --> N[NOT NULL]
+    M[Type: JSON] --> E
+    N[Constraint: NOT NULL] --> E
     
-    F --> O[TEXT]
-    F --> P[NOT NULL]
+    O[Type: TEXT] --> F
+    P[Constraint: NOT NULL] --> F
     
-    G --> Q[TIMESTAMP]
-    G --> R[DEFAULT CURRENT_TIMESTAMP]
+    Q[Type: TIMESTAMP] --> G
+    R[Default: CURRENT_TIMESTAMP] --> G
 ```
 
 **Database Details**:
-- **Database Name**: `physics_calculator`
-- **Table**: `results`
-- **Columns**:
-  - `id`: INT, auto-increment primary key
-  - `topic`: VARCHAR(50), physics topic name
-  - `inputs`: JSON, calculation inputs
-  - `result`: TEXT, calculation result
-  - `created_at`: TIMESTAMP, creation timestamp
+| Property | Value |
+|----------|-------|
+| Database Name | `physics_calculator` |
+| Table | `results` |
+
+**Columns**:
+| Column | Type | Constraints |
+|--------|------|-------------|
+| id | INT | AUTO_INCREMENT PRIMARY KEY |
+| topic | VARCHAR(50) | NOT NULL |
+| inputs | JSON | NOT NULL |
+| result | TEXT | NOT NULL |
+| created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP |
 
 **Connection Pool Configuration**:
 - Maximum connections: 10
