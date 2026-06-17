@@ -1,25 +1,30 @@
 import { useState } from "react";
-import { Layout, MRU, MRUA, FreeFall } from "./components";
+import { Layout } from "./components";
+import { Home, Team, Contact, News, Calculator } from "./pages";
 
 function App() {
-  const [currentTopic, setCurrentTopic] = useState("MRU");
+  const [currentPage, setCurrentPage] = useState("HOME");
 
-  const renderCalculator = () => {
-    switch (currentTopic) {
-      case "MRU":
-        return <MRU />;
-      case "MRUA":
-        return <MRUA />;
-      case "FREE_FALL":
-        return <FreeFall />;
+  const renderPage = () => {
+    switch (currentPage) {
+      case "HOME":
+        return <Home />;
+      case "TEAM":
+        return <Team />;
+      case "CONTACT":
+        return <Contact />;
+      case "NEWS":
+        return <News />;
+      case "CALCULATOR":
+        return <Calculator />;
       default:
-        return <MRU />;
+        return <Home />;
     }
   };
 
   return (
-    <Layout headerProps={{ currentTopic, setCurrentTopic }}>
-      {renderCalculator()}
+    <Layout headerProps={{ currentPage, setCurrentPage }}>
+      {renderPage()}
     </Layout>
   );
 }

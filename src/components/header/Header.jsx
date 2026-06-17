@@ -1,24 +1,26 @@
 import React from 'react';
 import styles from './Header.module.css';
 
-const Header = ({ currentTopic, setCurrentTopic }) => {
-  const topics = [
-    { id: 'MRU', label: 'MRU' },
-    { id: 'MRUA', label: 'MRUA' },
-    { id: 'FREE_FALL', label: 'Caída Libre' }
+const Header = ({ currentPage, setCurrentPage }) => {
+  const menuItems = [
+    { id: 'HOME', label: 'Inicio' },
+    { id: 'TEAM', label: 'Equipo de trabajo' },
+    { id: 'CONTACT', label: 'Contactos' },
+    { id: 'NEWS', label: 'Noticias' },
+    { id: 'CALCULATOR', label: 'Calculadora de Física' }
   ];
 
   return (
     <div className={styles.headerContent}>
-      <h1 className={styles.title}>Calculadora de Física</h1>
+      <h1 className={styles.title}>Física Pro</h1>
       <nav className={styles.nav}>
-        {topics.map((topic) => (
+        {menuItems.map((item) => (
           <button
-            key={topic.id}
-            className={`${styles.button} ${currentTopic === topic.id ? styles.active : ''}`}
-            onClick={() => setCurrentTopic(topic.id)}
+            key={item.id}
+            className={`${styles.button} ${currentPage === item.id ? styles.active : ''}`}
+            onClick={() => setCurrentPage(item.id)}
           >
-            {topic.label}
+            {item.label}
           </button>
         ))}
       </nav>
