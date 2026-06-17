@@ -64,6 +64,34 @@ The Physics Calculator Server is a RESTful API application designed to store and
 
 The application uses MySQL as its database with the following structure:
 
+```mermaid
+graph TD
+    A[physics_calculator] --> B[results]
+    
+    B --> C[id]
+    B --> D[topic]
+    B --> E[inputs]
+    B --> F[result]
+    B --> G[created_at]
+    
+    C --> H[INT]
+    C --> I[AUTO_INCREMENT]
+    C --> J[PRIMARY KEY]
+    
+    D --> K[VARCHAR(50)]
+    D --> L[NOT NULL]
+    
+    E --> M[JSON]
+    E --> N[NOT NULL]
+    
+    F --> O[TEXT]
+    F --> P[NOT NULL]
+    
+    G --> Q[TIMESTAMP]
+    G --> R[DEFAULT CURRENT_TIMESTAMP]
+```
+
+**Database Details**:
 - **Database Name**: `physics_calculator`
 - **Table**: `results`
 - **Columns**:
@@ -73,7 +101,7 @@ The application uses MySQL as its database with the following structure:
   - `result`: TEXT, calculation result
   - `created_at`: TIMESTAMP, creation timestamp
 
-The database connection pool is configured with:
+**Connection Pool Configuration**:
 - Maximum connections: 10
 - Queue limit: Unlimited
 - Host: localhost (configurable via environment variables)
