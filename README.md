@@ -41,7 +41,7 @@ npm start
 ## Database Architecture
 
 ```mermaid
-graph TD
+graph LR
     A[Database: physics_calculator] --> B[Table: results]
     
     C[id] --> B
