@@ -1,48 +1,46 @@
 # Physics Calculator Server
 
-# Servidor Calculadora Física
+## Table of Contents
 
-## Tabla de Contenido
+1. Overview
+2. Technologies Used
+3. Installation
+4. Database Architecture
 
-1. [Resumen](#resumen)
-2. [Tecnologías Utilizadas](#tecnologías-utilizadas)
-3. [Instalación](#instalación)
-4. [Arquitectura de Base de Datos](#arquitectura-de-base-de-datos)
+## Overview
 
-## Resumen
+The Physics Calculator Server is a RESTful API application designed to store and retrieve calculation results for various physics-related topics. It provides endpoints for saving and fetching calculation results with timestamps.
 
-El Servidor Calculadora Física es una aplicación API REST diseñada para almacenar y recuperar resultados de cálculos relacionados con la física. Proporciona endpoints para guardar y obtener resultados de cálculos con marcas de tiempo.
+## Technologies Used
 
-## Tecnologías Utilizadas
+1. Node.js: JavaScript runtime environment
+2. Express.js: Web framework for building APIs
+3. MySQL: Relational database management system
+4. mysql2: MySQL driver for Node.js
+5. CORS: Middleware for handling Cross-Origin Resource Sharing
+6. dotenv: Environment variable management
+7. Docker: Containerization platform
 
-1. Node.js: Entorno de ejecución de JavaScript
-2. Express.js: Framework web para construir APIs
-3. MySQL: Sistema de gestión de bases de datos relacionales
-4. mysql2: Controlador MySQL para Node.js
-5. CORS: Middleware para manejar Cross-Origin Resource Sharing
-6. dotenv: Gestión de variables de entorno
-7. Docker: Plataforma de contenedorización
-
-## Instalación
+## Installation
 
 ```bash
-# Clonar repositorio
+# Clone repository
 git clone <repository-url>
 cd physics-calculator-server
 
-# Instalar dependencias
+# Install dependencies
 cd server
 npm install
 
-# Iniciar servidor
+# Start server
 npm start
 ```
 
-## Arquitectura de Base de Datos
+## Database Architecture
 
 ```mermaid
 graph LR
-    A[Base de Datos: physics_calculator] --> B[Tabla: results]
+    A[Database: physics_calculator] --> B[Table: results]
     
     C[id] --> B
     D[topic] --> B
