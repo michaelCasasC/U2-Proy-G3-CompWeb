@@ -13,7 +13,7 @@
   margin-bottom: 14px;
   color: var(--text-main);
   font-size: 3rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .subtitle {
@@ -46,12 +46,13 @@
   background: rgb(37 99 235 / 0.12);
   color: var(--primary);
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .info h2 {
   margin-bottom: 14px;
   font-size: 2rem;
+  font-weight: 650;
 }
 
 .info p {
@@ -76,6 +77,7 @@
 
 .contactItem strong {
   color: var(--text-main);
+  font-weight: 600;
 }
 
 .contactItem span {
