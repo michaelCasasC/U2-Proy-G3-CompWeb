@@ -2,10 +2,12 @@ import React from 'react';
 import styles from './InputField.module.css';
 
 const InputField = ({ label, value, onChange, placeholder, name }) => {
+  const inputId = `input-${name}`;
   return (
     <div className={styles.inputField}>
-      <label className={styles.label}>{label}</label>
+      <label htmlFor={inputId} className={styles.label}>{label}</label>
       <input
+        id={inputId}
         type="number"
         className={styles.input}
         value={value}

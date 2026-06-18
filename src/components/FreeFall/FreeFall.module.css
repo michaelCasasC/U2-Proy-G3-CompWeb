@@ -1,22 +1,27 @@
 .card {
   background: white;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   max-width: 500px;
+  margin: 0 auto;
 }
 
 .title {
-  margin-top: 0;
+  margin-bottom: 10px;
   color: #1e293b;
-  border-bottom: 2px solid #f8fafc;
-  padding-bottom: 10px;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .description {
-  font-size: 0.9rem;
   color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.inputGroup {
   margin-bottom: 20px;
 }
 
@@ -26,23 +31,62 @@
   background-color: #2563eb;
   color: white;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 10px;
+  font-weight: 600;
   font-size: 1rem;
-  font-weight: bold;
-  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 
 .button:hover {
-  background-color: #3b82f6;
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
-.result {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #dcfce7;
-  color: #166534;
-  border-radius: 4px;
-  font-weight: bold;
+.resultContainer {
+  background-color: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.resultItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.resultItem:last-child {
+  border-bottom: none;
+}
+
+.resultLabel {
+  font-weight: 500;
+  color: #475569;
+}
+
+.resultValue {
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.error {
+  color: #ef4444;
   text-align: center;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.educationalNote {
+  background-color: #eff6ff;
+  color: #1e40af;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border-left: 4px solid #2563eb;
 }
