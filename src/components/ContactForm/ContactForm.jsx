@@ -9,21 +9,44 @@ const initialForm = {
   message: '',
 };
 
+const initialErrors = {
+  name: '',
+  email: '',
+  subject: '',
+  message: '',
+};
+
+const fieldMessages = {
+  name: 'Escribe tu nombre para saber a quién responder.',
+  email: 'Ingresa un correo válido para poder contactarte.',
+  subject: 'Indica el tema de tu consulta.',
+  message: 'Cuéntanos un poco más para poder ayudarte mejor.',
+};
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const ContactField = ({
   label,
   type = 'text',
   name,
   value,
   onChange,
+  onBlur,
   placeholder,
+  error,
   multiline = false,
 }) => {
+  const inputId = `contact-${name}`;
+  const errorId = `${inputId}-error`;
   const fieldProps = {
+    id: inputId,
     name,
     value,
     onChange,
+    onBlur,
     placeholder,
-    required: true,
+    'aria-invalid': Boolean(error),
+    'aria-describedby': error ? errorId : undefined,
   };
 
   return (
@@ -33,6 +56,11 @@ const ContactField = ({
         <textarea {...fieldProps} rows="6" />
       ) : (
         <input {...fieldProps} type={type} />
+      )}
+      {error && (
+        <span className={styles.error} id={errorId} role="alert">
+          {error}
+        </span>
       )}
     </label>
   );
@@ -44,13 +72,34 @@ ContactField.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
+  error: PropTypes.string,
   multiline: PropTypes.bool,
 };
 
 const ContactForm = () => {
   const [formData, setFormData] = useState(initialForm);
+  const [errors, setErrors] = useState(initialErrors);
   const [sent, setSent] = useState(false);
+
+  const validateField = (name, value) => {
+    const trimmedValue = value.trim();
+
+    if (!trimmedValue) {
+      return fieldMessages[name];
+    }
+
+    if (name === 'email' && !emailPattern.test(trimmedValue)) {
+      return 'Usa un correo con formato válido, por ejemplo nombre@correo.com.';
+    }
+
+    if (name === 'message' && trimmedValue.length < 12) {
+      return 'El mensaje debe tener al menos 12 caracteres.';
+    }
+
+    return '';
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -58,23 +107,55 @@ const ContactForm = () => {
       ...currentData,
       [name]: value,
     }));
+    setSent(false);
+
+    if (errors[name]) {
+      setErrors((currentErrors) => ({
+        ...currentErrors,
+        [name]: validateField(name, value),
+      }));
+    }
+  };
+
+  const handleBlur = (event) => {
+    const { name, value } = event.target;
+    setErrors((currentErrors) => ({
+      ...currentErrors,
+      [name]: validateField(name, value),
+    }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const nextErrors = Object.keys(formData).reduce((currentErrors, fieldName) => ({
+      ...currentErrors,
+      [fieldName]: validateField(fieldName, formData[fieldName]),
+    }), {});
+
+    setErrors(nextErrors);
+
+    if (Object.values(nextErrors).some(Boolean)) {
+      setSent(false);
+      return;
+    }
+
     setSent(true);
     setFormData(initialForm);
+    setErrors(initialErrors);
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <div className={styles.row}>
         <ContactField
           label="Nombre"
           name="name"
           value={formData.name}
           onChange={handleChange}
+          onBlur={handleBlur}
           placeholder="Tu nombre completo"
+          error={errors.name}
         />
 
         <ContactField
@@ -83,7 +164,9 @@ const ContactForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          onBlur={handleBlur}
           placeholder="nombre@correo.com"
+          error={errors.email}
         />
       </div>
 
@@ -92,7 +175,9 @@ const ContactForm = () => {
         name="subject"
         value={formData.subject}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="Consulta sobre física o la plataforma"
+        error={errors.subject}
       />
 
       <ContactField
@@ -100,7 +185,9 @@ const ContactForm = () => {
         name="message"
         value={formData.message}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="Cuéntanos cómo podemos ayudarte"
+        error={errors.message}
         multiline
       />
 

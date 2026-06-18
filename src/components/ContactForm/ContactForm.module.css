@@ -54,6 +54,12 @@
   box-shadow: 0 0 0 3px rgb(37 99 235 / 0.12);
 }
 
+.field input[aria-invalid='true'],
+.field textarea[aria-invalid='true'] {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.12);
+}
+
 .field input::placeholder,
 .field textarea::placeholder {
   color: #94a3b8;
@@ -67,6 +73,17 @@
   background: rgb(16 185 129 / 0.1);
   color: #047857;
   font-weight: 600;
+  animation: noticeIn 0.28s ease both;
+}
+
+.error {
+  display: block;
+  margin-top: -2px;
+  color: var(--danger);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
+  animation: errorIn 0.24s ease both;
 }
 
 .submitButton {
@@ -99,5 +116,29 @@
 
   .submitButton {
     width: 100%;
+  }
+}
+
+@keyframes errorIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes noticeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
