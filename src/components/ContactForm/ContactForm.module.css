@@ -1,27 +1,29 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
   width: 100%;
-  padding: 32px;
+  min-width: 0;
+  padding: 40px;
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
 }
 
 .row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 22px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
   color: var(--text-main);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   text-align: left;
 }
@@ -29,7 +31,8 @@
 .field input,
 .field textarea {
   width: 100%;
-  padding: 12px 14px;
+  min-height: 52px;
+  padding: 14px 16px;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   background: #ffffff;
@@ -41,7 +44,7 @@
 }
 
 .field textarea {
-  min-height: 150px;
+  min-height: 190px;
   resize: vertical;
 }
 
@@ -68,7 +71,8 @@
 
 .submitButton {
   align-self: flex-start;
-  padding: 12px 28px;
+  min-height: 52px;
+  padding: 14px 34px;
   border: none;
   border-radius: var(--radius-md);
   background: var(--primary);
@@ -86,7 +90,7 @@
 
 @media (max-width: 720px) {
   .form {
-    padding: 24px;
+    padding: 28px;
   }
 
   .row {

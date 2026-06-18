@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 
 const initialForm = {
@@ -35,6 +36,16 @@ const ContactField = ({
       )}
     </label>
   );
+};
+
+ContactField.propTypes = {
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  multiline: PropTypes.bool,
 };
 
 const ContactForm = () => {
