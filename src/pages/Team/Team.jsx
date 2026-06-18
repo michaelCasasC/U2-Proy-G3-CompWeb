@@ -1,21 +1,24 @@
-import React from 'react';
-import { Card } from '../../components';
-import styles from './Team.module.css';
+import React from "react";
+import { Card } from "../../components";
+import styles from "./Team.module.css";
 
 const Team = () => {
   const members = [
     {
       id: 1,
-      name: 'Alex Rivera',
-      description: 'Ingeniero de Software especializado en Física Computacional. Apasionado por crear herramientas educativas interactivas.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=687&auto=format&fit=crop'
+      name: "Jefferson Mejía",
+      description:
+        "Ingeniero en proceso especializado en programación. Apasionado por crear herramientas educativas interactivas.",
+      image:
+        "https://media.licdn.com/dms/image/v2/D4E03AQH3-qOBt-EJEQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1711238029112?e=2147483647&v=beta&t=Vaync_DpSw0xSFjgCVvT670IJg7Fm1-MSxi4XTmcKsA",
     },
     {
       id: 2,
-      name: 'Elena Martínez',
-      description: 'Diseñadora UX/UI enfocada en accesibilidad. Se encarga de que la experiencia del usuario sea fluida y visualmente atractiva.',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=687&auto=format&fit=crop'
-    }
+      name: "Michael Casas",
+      description:
+        "Diseñador UX/UI enfocado en accesibilidad. Se encarga de que la experiencia del usuario sea fluida y visualmente atractiva.",
+      image: "https://contents.bebee.com/users/id/gz2oL6413c92fd1aa5/_avatar-6cpzP-400.png",
+    },
   ];
 
   return (
@@ -25,8 +28,8 @@ const Team = () => {
         <p className={styles.subtitle}>Las mentes detrás de Física Pro.</p>
       </div>
       <div className={styles.grid}>
-        {members.map(member => (
-          <Card 
+        {members.map((member) => (
+          <Card
             key={member.id}
             name={member.name}
             description={member.description}

@@ -4,16 +4,47 @@
 }
 
 .hero {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 60px 0;
-  min-height: 80vh;
+  justify-content: center;
+  min-height: 90vh;
+  margin: 0 -100vw;
+  padding: 0 100vw;
+  background-image: url("https://thfvnext.bing.com/th/id/R.985b16b50c842e32e424bf9ade53df3a?rik=XofZ3PkGYh5sTw&pid=ImgRaw&r=0");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4); /* Darker overlay for better contrast */
+  z-index: 1;
 }
 
 .heroContent {
-  flex: 1;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.glassCard {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  padding: 50px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .title {
@@ -21,6 +52,7 @@
   line-height: 1.1;
   font-weight: 800;
   margin-bottom: 20px;
+  color: #1e293b;
 }
 
 .accent {
@@ -32,7 +64,7 @@
 
 .subtitle {
   font-size: 1.25rem;
-  color: #64748b;
+  color: #475569;
   margin-bottom: 30px;
   line-height: 1.6;
 }
@@ -40,6 +72,7 @@
 .heroButtons {
   display: flex;
   gap: 15px;
+  justify-content: center;
 }
 
 .primaryBtn {
@@ -52,11 +85,14 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .primaryBtn:hover {
   background-color: #1d4ed8;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .secondaryBtn {
@@ -69,23 +105,13 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .secondaryBtn:hover {
   background-color: #f1f5f9;
-}
-
-.heroImage {
-  flex: 1;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.heroImage img {
-  width: 100%;
-  height: auto;
-  display: block;
+  transform: translateY(-2px);
 }
 
 .intro {
@@ -97,27 +123,38 @@
 }
 
 .introGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .introItem {
   background: white;
-  padding: 30px;
-  border-radius: 16px;
+  padding: 40px 30px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  flex: 1 1 300px; /* Base width of 300px, can grow and shrink */
+  max-width: 350px;
+  transition: transform 0.3s ease;
 }
 
-.icon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+.introItem:hover {
+  transform: translateY(-5px);
 }
 
 .introItem h3 {
-  margin-bottom: 10px;
-  font-size: 1.25rem;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #1e293b;
+}
+
+.introItem p {
+  color: #64748b;
+  line-height: 1.6;
 }
 
 .aboutProject {
@@ -139,15 +176,17 @@
 }
 
 @media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 40px 0;
-  }
   .title {
     font-size: 2.5rem;
   }
+  .glassCard {
+    padding: 30px 20px;
+  }
   .heroButtons {
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  .primaryBtn, .secondaryBtn {
+    width: 100%;
   }
 }
