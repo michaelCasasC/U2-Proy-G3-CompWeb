@@ -50,7 +50,7 @@ const Header = () => {
         </nav>
 
         <div className={styles.actions}>
-          <button className={styles.cta}>Empezar</button>
+          <Link to="/calculator" className={styles.cta}>Calcular</Link>
         </div>
       </div>
     </header>
